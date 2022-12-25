@@ -196,17 +196,25 @@ By using tablespaces, you can perform the following operations:
 
 - Default tablespaces in Oracle
 
-Oracle comes with the following default tablespaces: `SYSTEM`, `SYSAUX`, `USERS`, `RBS`, and `TEMP`.
-
--  The `SYSTEM` and `SYSAUX tablespaces store system-generated objects such as data dictionary tables. And you should not store any object in these tablespaces.
-- The `USERS` tablespace is helpful for ad-hoc users.
-- The `RBS` holds the undo data The RBS tablespace is used for roll-
+  -  The `SYSTEM` and `SYSAUX tablespaces store system-generated objects such as data dictionary tables. And you should not store any object in these tablespaces.
+  - The `USERS` tablespace is helpful for ad-hoc users.
+  - The `RBS` holds the undo data The RBS tablespace is used for roll-
 back segments.
-- The `TEMP` is the temporary tablespace which is used for storing intermediate results of sorting, hashing, and large object processing operations.
+  - The `TEMP` is the temporary tablespace which is used for storing intermediate results of sorting, hashing, and large object processing operations.
 The INDX tablespace is used to store index data. These naming conven-
 
+- Tablespaces status 
+
+  A tablespace can have one of two statuses: `ONLINE` or `OFFLINE`. When a tablespace is online, it is available to the database Instance. For example, data may be read from the datafiles associated with an online tablespace. When a tablespace is offline, it is not available for such activity.
+
+- TableSpaces and Datafiles
+
+   ![](/photos/TS-DF.png)
 
 
+The relationship of tablespaces to `datafiles` in that `tablespaces` are logical space management structures that are composed of one or more disk or physical files. Oracle refers to these physical files as datafiles,
+the files that hold the physical data contained in the objects in the tablespaces.
+Again, one single tablespace can be composed of one or more datafiles.
 
 ## **Practical** 
 ## SQL Recap 
