@@ -1,5 +1,5 @@
 # DBA Review
-## **Theory** 
+
 
 ## *What is Database ?*
 A set of logically related data with a description. 
@@ -8,9 +8,11 @@ A set of logically related data with a description.
 
 ## *What is DBMS ?*
 The software that manages the access to the database.it enables users to *define, create, and maintain* the database and provides controlled access to it.
-> - Define = DDL (Database Definition Language)
+>- Define = DDL (Database Definition Language)
 >-  Create = DML (Database Manipulation Language)
 >-  Maintenance = (DCL/TCL)  like security, integrity, concurrency control, recovery control, and user-accessible catalog.
+
+
 ## The History of DBMS
 
 ### *First Generation DBMS*
@@ -155,14 +157,53 @@ The DBA has to continuously monitor the performance of the queries and take meas
 ## What is a database view
 A view is a subset of the database, presented to one user or set of users. 
 
-
-
 ## Mention the benefits using views :
 1. They reduce complexity by letting users see the data in the way they want
 2. They provide security by excluding data that some users should not see
 3. They customize the appearance of the database, such as changing attribute names
 4. They hide changes in the database and provide consistent view of the database to users.  
-5. The also provide the program-data independence mentioned earlier 
+5. The also provide the program-data independence mentioned earlier .
+
+## Table Spaces 
+- What a Tablespace Is?
+
+Oracle divides a database into one or more logical storage units called tablespaces.
+
+Each **tablespace** <mark>consists of one or more files called</mark> **datafiles**. A **datafile**<mark> physically stores the data objects of the database</mark> such as tables and indexes on disk.
+
+In other words, Oracle logically stores data in the tablespaces and physically stores data in datafiles associated with the corresponding tablespaces.
+
+![](https://www.oracletutorial.com/wp-content/uploads/2019/07/Oracle-tablespace.png)
+
+
+A datafile can span multiple disks. The size of a
+datafile is initially determined by the DBA upon creation. It can be as
+large as the largest file permitted by the operating system. The configuration of the machine on which the database is running determines
+exactly how the information in the datafile is distributed across the disk.
+
+![](/photos/T-TS.png)
+
+-  What Tablespaces used for ?
+By using tablespaces, you can perform the following operations:
+
+    - Control the storage size allocated for the database data.
+    - Grant specific space quotas to the database users.
+    - Control the availability of data by taking tablespaces online or offline (more on this later).
+    - Improve the performance of the database by allocating data storage across devices.
+    - Perform partial database backup or recovery.
+	- configure the database such that database objects are separated, to reduce the amount of administration and physical disk I/O (input/output) necessary.
+	- DBA ensure that problem areas will remain isolated and will not affect the entire database because of the use of tablespaces.
+
+- Default tablespaces in Oracle
+
+Oracle comes with the following default tablespaces: `SYSTEM`, `SYSAUX`, `USERS`, `RBS`, and `TEMP`.
+
+-  The `SYSTEM` and `SYSAUX tablespaces store system-generated objects such as data dictionary tables. And you should not store any object in these tablespaces.
+- The `USERS` tablespace is helpful for ad-hoc users.
+- The `RBS` holds the undo data The RBS tablespace is used for roll-
+back segments.
+- The `TEMP` is the temporary tablespace which is used for storing intermediate results of sorting, hashing, and large object processing operations.
+The INDX tablespace is used to store index data. These naming conven-
 
 
 
