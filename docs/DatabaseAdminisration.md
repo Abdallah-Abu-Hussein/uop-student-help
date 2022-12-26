@@ -1,6 +1,6 @@
 ![](https://media.giphy.com/media/MdA16VIoXKKxNE8Stk/giphy-downsized.gif)
 # DBA Review
-
+Note: 🔥 == important
 
 ## *What is Database ?*
 A set of logically related data with a description. 
@@ -27,7 +27,6 @@ The software that manages the access to the database.it enables users to *define
 
 ### *Third Generation DBMS*
 - Object Oriented DBMS and Object-Relational DBMS
-- These are called 
 
 ## *Advantages of DBMSs* 
 1.  Control of Data Redundancy
@@ -161,10 +160,10 @@ The DBA has to continuously monitor the performance of the queries and take meas
 A view is a subset of the database, presented to one user or set of users. 
 
 ## Mention the benefits using views :
-1. They reduce complexity by letting users see the data in the way they want
-2. They provide security by excluding data that some users should not see
-3. They customize the appearance of the database, such as changing attribute names
-4. They hide changes in the database and provide consistent view of the database to users.  
+1. They <mark>reduce complexity</mark> by letting users see the data in the way they want
+2. They <mark>provide security</mark> by excluding data that some users should not see
+3. They <mark>customize the appearance of the database</mark>, such as changing attribute names
+4. They <mark>hide changes in the database and provide consistent view of the database to users.</mark>  
 5. The also provide the program-data independence mentioned earlier .
 
 ## Table Spaces 
@@ -315,7 +314,7 @@ visit this site [Oracle Tutorial](https://www.oracletutorial.com/getting-started
 ### How to Display Constraints for table student? 🔥 🔥
 You need to use the user dictionary 
 ```sql
-Select Constraint_name,status form user_constraints From Student;
+Select Constraint_name,status Form user_constraints where table_name 'STUDENT';
 ```
 The Results :
 
@@ -393,11 +392,20 @@ check those example 🔥 💣**examples** 🔥 💣 :
   ![](../photos/v2-ex.png)
 
 > Usually You can insert data into a view However keep in mind to that it won't updatable :
-1. if your select statement contain any of these : 
+
+
+
+
+<mark>1. if your select statement contain any of these : 
+
     1) Aggregation ( `sum` , `min` , `max` , `avg` , `count`)
+
     2) `Group By`
+
     3) From more than one table = `Join`
-2. If you added ` CHECK OPTION` `WITH READ ONLY` the check option ensures that the `where` clause condition is meet
+</mark>   
+
+<mark >2. If you added ` CHECK OPTION` `WITH READ ONLY` the check option ensures that the `where` clause condition is meet.</mark>
 
 2️⃣ trying to insert with the check condition not being meet 
 
@@ -408,7 +416,7 @@ check those example 🔥 💣**examples** 🔥 💣 :
 ![](../photos/v4-noU.png)
 
 
-
+### How To create tablespace
 
 
 
