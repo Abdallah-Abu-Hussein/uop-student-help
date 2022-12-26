@@ -450,10 +450,14 @@ specified in the CREATE TABLESPACE command,<mark> the default is
 `PERMANENT`</mark>.
 3. The `INITIAL` keyword in this example of the `CREATE TABLESPACE` statement
 refers to the <mark>initial default size of the first `extent`</mark>.
-    - What is an `extent` ?  some of the logical divisions are listed here:
-   1. A tablespace can contain zero or more `segments` = `table`.
+    - What is an `extent` ?  it is just some of  the logical divisions that exists in the tablespace like :
+   1. A `tablespace` can contain zero or more `segments` = `tables`.
    2. A `segment` is composed of one or more `extents`.
    3. An `extent` is composed of one or more `data blocks`.
+
+       ![](https://oracle-patches.com/images/2020/01/01/00019.jpeg)
+
+
 4. A tablespace’s `default storage` definition provides the storage that an object (such as a table) will automatically use.
 5. The `MINEXTENTS` option allows you to set aside additional `extents`beyond the
 initial `extent` at the time an object is created in the tablespace. 
@@ -461,8 +465,96 @@ initial `extent` at the time an object is created in the tablespace.
 7. The `PCTINCREASE` parameter specifies the growth factor for additional or incremental extents.
 
 
+## **examples**
+1. Create a new tablespace tbs1 with datafile called tbs1_data with size 1M:
+
+```sql
+CREATE TABLESPACE tbs1 
+   DATAFILE 'tbs1_data.dbf' 
+   SIZE 1m;
+```
+2. Create a new table called t1 whose tablespace is tbs1:
+```sql
+CREATE TABLE t1(
+   id number(10), 
+   c1 VARCHAR2(32)
+) TABLESPACE tbs1;
+```
+3. Create tablespace `new data` then create user Ahmad and make  `new  data` his tablespace.
+```sql
+conn system/p2
+----------------------------
+CREATE TABLESPACE new_data
+DATAFILE 'C:\oraclexe\oradata\XE\new_data01.dbf'
+SIZE 4M 
+DEFAULT STORAGE 
+(  INITIAL 25K NEXT 10K
+   MINEXTENTS 1 MAXEXTENTS 100
+   PCTINCREASE 0
+);
+---------------------------------
+SQL> create user ahmad identified by ahmad default tablespace new_data;
+---------------------
+SQL> grant connect , resource to ahmad;
+-------------------------------
+SQL> conn ahmad/ahmad
+SQL> create table dept (a number );
+conn system/p2
+SQL> select table_name , tablespace_name from dba_tables
+  2     where owner = 'AHMAD';
+
+TABLE_NAME                     TABLESPACE_NAME
+------------------------------ ------------------------------
+DEPT                           NEW_DATA
+--------------------------------------
+```
 
 
+```sql
+CREATE TABLESPACE B2
+DATAFILE 'C:\oraclexe\oradata\XE\B01.dbf' SIZE 4M ,
+         'C:\oraclexe\oradata\XE\B02.dbf' SIZE 4M 
+DEFAULT STORAGE 
+(  INITIAL 25K NEXT 10K
+   MINEXTENTS 1 MAXEXTENTS 100
+   PCTINCREASE 0
+);
+------------------------------------------
+Q: Find the total size of all files that belong to "B2" tablespace
+SQL> select sum(bytes)/1024/1024 as "Total(MB)" from dba_data_files where tablespace_name = 'B2';
+
+ Total(MB)
+----------
+         8
+-------------------------------------------
+```
+## What is an index 
+An index is a database structure that provides quick lookup of data in a column or columns of a table.
+
+## What are Index Types:
+1. Unique Index
+    Index on PK feild or Unique Field
+
+2. Non-Unique Index
+    Index on a feild which is Not PK or unique
+
+
+## How Create Index
+```sql
+ create index emp_sal_ix on emp(sal);
+ Desc user_indexes;
+
+select index_name from user_indexes
+       where table_name = 'EMP';
+```
+INDEX_NAME
+------------------------------
+PK_EMP
+EMP_SAL_IX
+
+```sql
+ Drop index emp_sal_ix;
+```
 
 ![](https://media.giphy.com/media/Wsju5zAb5kcOfxJV9i/giphy.gif)
 
