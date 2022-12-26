@@ -83,9 +83,6 @@ A DBMS must furnish a mechanism for recovering the database in the event that th
 **Integrity** Data and update on data should follow the constraints (rule)
 
 
-
-
-
 ## *What are the components of the DBMS Environment*
 - Hardware
 - Software
@@ -186,7 +183,7 @@ datafile is initially determined by the DBA upon creation. It can be as
 large as the largest file permitted by the operating system. The configuration of the machine on which the database is running determines
 exactly how the information in the datafile is distributed across the disk.
 
-![](/photos/T-TS.png)
+![](../photos/T-TS.png)
 
 -  What Tablespaces used for ?
 
@@ -214,8 +211,7 @@ The INDX tablespace is used to store index data. These naming conven-
 
 - TableSpaces and Datafiles
 
- ![](/photos/TS-DF.png)
-
+ ![ts-df](../photos/TS-DF.png)
 The relationship of tablespaces to `datafiles` in that `tablespaces` are logical space management structures that are composed of one or more disk or physical files. Oracle refers to these physical files as datafiles,
 the files that hold the physical data contained in the objects in the tablespaces.
 Again, one single tablespace can be composed of one or more datafiles.
@@ -270,7 +266,7 @@ Truncate table dept;
 Drop table dept;
 ```
 ### How to create a Table:
-![](/photos/CT-EX.png)
+![imageCT-EX](/photos/CT-EX.png)
 
 ```sql 
 Create table Major(
