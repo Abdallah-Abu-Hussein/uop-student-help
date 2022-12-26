@@ -371,6 +371,7 @@ WHERE view_conditions;  CREATE VIEW view_name [(column_aliases)] AS
 
 Let's create View for this Table : 
 ![](../photos/v-example.png)
+
 ```sql
 create view emp_v1 as (select ename, sal,hiredate from emp);
 ```
@@ -381,6 +382,35 @@ select * from emp_v1;
 The output:
 
 ![](../photos/v-output.png)
+
+
+This is the most basic `view you can create However there is mush more things you can do to have more control on the view : 
+
+check those example 🔥 💣**examples** 🔥 💣 : 
+
+1️⃣ : inserting data into the view 
+
+  ![](../photos/v2-ex.png)
+
+> Usually You can insert data into a view However keep in mind to that it won't updatable :
+1. if your select statement contain any of these : 
+    1) Aggregation ( `sum` , `min` , `max` , `avg` , `count`)
+    2) `Group By`
+    3) From more than one table = `Join`
+2. If you added ` CHECK OPTION` `WITH READ ONLY` the check option ensures that the `where` clause condition is meet
+
+2️⃣ trying to insert with the check condition not being meet 
+
+![](../photos/view-sc.png)
+
+3️⃣ Trying to insert with Aggregation `sum` OR `group by`
+
+![](../photos/v4-noU.png)
+
+
+
+
+
 
 ![](https://media.giphy.com/media/Wsju5zAb5kcOfxJV9i/giphy.gif)
 
