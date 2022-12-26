@@ -266,7 +266,7 @@ Truncate table dept;
 Drop table dept;
 ```
 ### How to create a Table:
-![imageCT-EX](/photos/CT-EX.png)
+![imageCT-EX](../photos/CT-EX.png)
 
 ```sql 
 Create table Major(
@@ -289,11 +289,16 @@ foreign key(Mno) References Major
 );
 
 /*If you started with the student Table you should not put the foreign key statement because the major table dose not exist yet you can create the student table first then the major table then Alter the student table with this statement*/
-Alter Table Student Add Constraint Mno_fk foreign key(mno) References major(mno),
+Alter Table Student Add Constraint Mno_fk foreign key(mno) References major(mno);
 ```
 If there is any SQL Syntax that you don't understand you do't understand : 
 visit this site [Oracle Tutorial](https://www.oracletutorial.com/getting-started/)
 
+### How to Display Constraints ?
+You need to use the user dictionary 
+```sql
+Select Constraint_name,status form user_constraints;
+```
 
 
 
