@@ -366,6 +366,7 @@ WHERE view_conditions;  CREATE VIEW view_name [(column_aliases)] AS
 [WITH CHECK OPTION]
 ```
 ### example 
+We have the table emp; 
 ![](../photos/desc-t.png)
 
 Let's create View for this Table : 
@@ -374,7 +375,7 @@ Let's create View for this Table :
 ```sql
 create view emp_v1 as (select ename, sal,hiredate from emp);
 ```
-to show the view we write : 
+to show the view : 
 ```sql
 select * from emp_v1;
 ```
@@ -391,9 +392,7 @@ check those example 🔥 💣**examples** 🔥 💣 :
 
   ![](../photos/v2-ex.png)
 
-> Usually You can insert data into a view However keep in mind to that it won't updatable :
-
-
+> Usually You can insert data into a view However keep in mind to that you will not be able  to so if any of those are in your statement :
 
 
 <mark>1. if your select statement contain any of these : 
