@@ -266,6 +266,22 @@ Truncate table dept;
 
 Drop table dept;
 ```
+
+
+### How to create a User in oracle database
+### ex: Create User (name: std4, password: s123) And Grant connect, resource to std4
+
+```sql
+Conn system/p2
+Create user std4 identified by s123;
+Grant connect,resource to std4;
+```
+
+Q: Connect with user std4 and Show all tables and views
+ ```sql
+ conn std4/s123
+ Select * from tab;
+```
 ### How to create a Table:
 ![imageCT-EX](../photos/CT-EX.png)
 
@@ -332,11 +348,8 @@ Mno number(4),
 avg number(2,3)constraint STD_AVG check (avg between 0 and 4),
 constraint student_mno_fk foreign key(Mno) References Major
 );
-
+```
 The Result: 
-
-
-
 
 ![](../photos/co-re.png)
 
