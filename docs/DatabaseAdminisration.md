@@ -3,10 +3,10 @@
 
 ## *What is Database ?*
 A set of logically related data with a description. 
-## *What is DBA ?*
+## *What is DBA ?* 🔥
 **Database administration** is the process of establishing computerized databases, and insuring their ``recoverability``, ``integrity``, ``security``, ``availability``,``reliability``, and ``performance``.
 
-## *What is DBMS ?*
+## *What is DBMS ?* 🔥
 The software that manages the access to the database.it enables users to *define, create, and maintain* the database and provides controlled access to it.
 >- Define = DDL (Database Definition Language)
 >-  Create = DML (Database Manipulation Language)
@@ -76,7 +76,12 @@ A DBMS must furnish a mechanism for recovering the database in the event that th
 
 ## *Some Definitions*      
 
-**The system Catalog** It is called sometime DATA DICTIONARY the catalog stores data about the data (meta-data). 
+🔥 **The system Catalog** It is called sometime DATA DICTIONARY the catalog stores data about the data (meta-data). 
+
+**Recovery** Restore the DB to the consistent state after the event of failure.
+
+**Integrity** Data and update on data should follow the constraints (rule)
+
 
 
 
@@ -98,7 +103,7 @@ A DBMS must furnish a mechanism for recovering the database in the event that th
 
 Responsibilities For different user types:
 
-`Database Administrators (DBA)`
+`Database Administrators (DBA)` 🔥
 
 1. Manage Users( Create User , Grant and Revoke Privileges)
 2. Defining Security & Integrity Checks 
@@ -154,7 +159,7 @@ The DBA has to continuously monitor the performance of the queries and take meas
 - Urgency of a client’s demands for  data
 - Need to maintain a secure, yet available database environment
 
-## What is a database view
+## What is a database view 🔥
 A view is a subset of the database, presented to one user or set of users. 
 
 ## Mention the benefits using views :
@@ -165,11 +170,11 @@ A view is a subset of the database, presented to one user or set of users.
 5. The also provide the program-data independence mentioned earlier .
 
 ## Table Spaces 
-- What a Tablespace Is?
+- What a Tablespace Is ? 🔥
 
 Oracle divides a database into one or more logical storage units called tablespaces.
 
-Each **tablespace** <mark>consists of one or more files called</mark> **datafiles**. A **datafile**<mark> physically stores the data objects of the database</mark> such as tables and indexes on disk.
+🔥Each **tablespace** <mark>consists of one or more files called</mark> **datafiles**. A **datafile**<mark> physically stores the data objects of the database</mark> such as tables and indexes on disk. 
 
 In other words, Oracle logically stores data in the tablespaces and physically stores data in datafiles associated with the corresponding tablespaces.
 
@@ -184,7 +189,7 @@ exactly how the information in the datafile is distributed across the disk.
 ![](/photos/T-TS.png)
 
 -  What Tablespaces used for ?
-By using tablespaces, you can perform the following operations:
+
 
     - Control the storage size allocated for the database data.
     - Grant specific space quotas to the database users.
@@ -192,7 +197,7 @@ By using tablespaces, you can perform the following operations:
     - Improve the performance of the database by allocating data storage across devices.
     - Perform partial database backup or recovery.
 	- configure the database such that database objects are separated, to reduce the amount of administration and physical disk I/O (input/output) necessary.
-	- DBA ensure that problem areas will remain isolated and will not affect the entire database because of the use of tablespaces.
+    - DBA ensure that problem areas will remain isolated and will not affect the entire database because of the use of tablespaces.
 
 - Default tablespaces in Oracle
 
@@ -209,8 +214,7 @@ The INDX tablespace is used to store index data. These naming conven-
 
 - TableSpaces and Datafiles
 
-   ![](/photos/TS-DF.png)
-
+ ![](/photos/TS-DF.png)
 
 The relationship of tablespaces to `datafiles` in that `tablespaces` are logical space management structures that are composed of one or more disk or physical files. Oracle refers to these physical files as datafiles,
 the files that hold the physical data contained in the objects in the tablespaces.
@@ -225,30 +229,13 @@ Again, one single tablespace can be composed of one or more datafiles.
 
  Oracle supplies the following built-in datatypes:
 
-  **character datatypes**
+**`Character` datatypes**
 * ``CHAR`` (size) Fixed-length character data of length size bytes
 * ``(VARCHAR2 and VARCHAR) + (size)`` Variable-length character data.  
-* LONG  Variable-length character data.  
 
  **``NUMBER`` datatype** Variable-length numeric data. Maximum precision p and/or scale s is 38.  
 
  **``DATE`` datatype**  Fixed-length date and time data, ranging from Jan. 1, 4712 B.C.E. to Dec. 31, 4712 C.E.  
-
-
-### How to create a Table:
-```sql
-Create table Student (
-Sno number(10) primary key,
-SName varchar(50),
-city varchar(15),
-address varchar(100),
-birhdate date,
-gender char check (gender in 'M'and 'F'),
-Mno number (4),
-avg number(2,3) check (avg between 0 and 4)
-);
-```
-
 
 #### DML : 
 ```sql
@@ -282,5 +269,39 @@ Truncate table dept;
 
 Drop table dept;
 ```
+### How to create a Table:
+![](/photos/CT-EX.png)
+
+```sql 
+Create table Major(
+Mno number(5) primary key,
+Mname varchar2(20) NOT NULL,
+Mhour number(3)
+);
+```
+```sql
+Create table Student (
+Sno number(10) primary key,
+SName varchar(50) NOT NULL,
+city varchar(15),
+address varchar(100),
+birhdate date,
+gender char check (gender in ('M','F')),
+Mno number(4),
+avg number(2,3) check (avg between 0 and 4),
+foreign key(Mno) References Major
+);
+
+/*If you started with the student Table you should not put the foreign key statement because the major table dose not exist yet you can create the student table first then the major table then Alter the student table with this statement*/
+Alter Table Student Add Constraint Mno_fk foreign key(mno) References major(mno),
+```
+If there is any SQL Syntax that you don't understand you do't understand : 
+visit this site [Oracle Tutorial](https://www.oracletutorial.com/getting-started/)
+
+
+
+
+
+
 
 
