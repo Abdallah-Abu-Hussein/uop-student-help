@@ -1,3 +1,4 @@
+![](https://media.giphy.com/media/MdA16VIoXKKxNE8Stk/giphy-downsized.gif)
 # DBA Review
 
 
@@ -294,12 +295,56 @@ Alter Table Student Add Constraint Mno_fk foreign key(mno) References major(mno)
 If there is any SQL Syntax that you don't understand you do't understand : 
 visit this site [Oracle Tutorial](https://www.oracletutorial.com/getting-started/)
 
-### How to Display Constraints ?
+### How to Display Constraints for table student?
 You need to use the user dictionary 
 ```sql
-Select Constraint_name,status form user_constraints;
+Select Constraint_name,status form user_constraints From Student;
 ```
+The Results :
 
+![](../photos/Re_se.png)
+
+To Make those constraints more readable you can rename them by altering the table with something like this:
+
+```sql
+Alter table student rename constraint SYS_C004081 to sno_pk;
+```
+OR you consider that form before creating the table like this : 
+
+
+
+```sql 
+Create table Major(
+Mno number(5) primary key,
+Mname varchar2(20) NOT NULL,
+Mhour number(3)
+);
+```
+```sql
+Create table Student (
+Sno number(10) constraint Student_pk  primary key,
+SName varchar(50) constraint Student_Name_nn NOT NULL,
+city varchar(15),
+address varchar(100),
+birhdate date,
+gender char constraint STD_gender_ck check (gender in ('M','F')),
+Mno number(4),
+avg number(2,3)constraint STD_AVG check (avg between 0 and 4),
+constraint student_mno_fk foreign key(Mno) References Major
+);
+
+The Result: 
+
+
+
+
+![](../photos/co-re.png)
+
+
+
+
+
+![](https://media.giphy.com/media/Wsju5zAb5kcOfxJV9i/giphy.gif)
 
 
 
