@@ -417,6 +417,50 @@ check those example 🔥 💣**examples** 🔥 💣 :
 
 
 ### How To create tablespace
+Basic syntax : 
+
+```sql
+CREATE TABLESPACE tbs1 
+   DATAFILE 'tbs1_data.dbf' 
+   SIZE 1m;
+```
+Full Syntax : 
+```sql
+CREATE TABLESPACE <tablespace_name>
+DATAFILE <datafile_name> SIZE <size_of_datafile>
+DEFAULT STORAGE
+(INITIAL <size_of_initial_extent>
+NEXT <size_of_next_extent>
+MINEXTENTS <minimum_number_of_extents>
+MAXEXTENTS <maximum_number_of_extents>
+PCTINCREASE <extent_growth_rate>
+)
+PERMANENT;
+```
+
+let's explain more : 🤓 
+1. Bracketed (<>) words used in the syntax diagrams should be substituted with
+your actual values.
+2. The `PERMANENT` keyword in this command tells Oracle that you would
+like objects to be stored in this tablespace (e.g., tables or indexes). If the
+tablespace is to be used for temporary sort operations, then you may use
+the `TEMPORARY` keyword. Using this keyword means that you do not
+intend to store application objects in the tablespace. If this keyword is not
+specified in the CREATE TABLESPACE command,<mark> the default is
+`PERMANENT`</mark>.
+3. The `INITIAL` keyword in this example of the `CREATE TABLESPACE` statement
+refers to the <mark>initial default size of the first `extent`</mark>.
+    - What is an `extent` ?  some of the logical divisions are listed here:
+   1. A tablespace can contain zero or more `segments` = `table`.
+   2. A `segment` is composed of one or more `extents`.
+   3. An `extent` is composed of one or more `data blocks`.
+4. A tablespace’s `default storage` definition provides the storage that an object (such as a table) will automatically use.
+5. The `MINEXTENTS` option allows you to set aside additional `extents`beyond the
+initial `extent` at the time an object is created in the tablespace. 
+6. The `MAXEXTENTS` is the maximum number of total extents allowed. Here, that limit has been set to 100. You can also specify `MAX-EXTENTS UNLIMITED`.
+7. The `PCTINCREASE` parameter specifies the growth factor for additional or incremental extents.
+
+
 
 
 
