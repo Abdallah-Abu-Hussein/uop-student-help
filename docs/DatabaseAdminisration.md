@@ -213,6 +213,7 @@ The INDX tablespace is used to store index data. These naming conven-
 - TableSpaces and Datafiles
 
  ![ts-df](../photos/TS-DF.png)
+
 The relationship of tablespaces to `datafiles` in that `tablespaces` are logical space management structures that are composed of one or more disk or physical files. Oracle refers to these physical files as datafiles,
 the files that hold the physical data contained in the objects in the tablespaces.
 Again, one single tablespace can be composed of one or more datafiles.
@@ -311,7 +312,7 @@ Alter Table Student Add Constraint Mno_fk foreign key(mno) References major(mno)
 If there is any SQL Syntax that you don't understand you do't understand : 
 visit this site [Oracle Tutorial](https://www.oracletutorial.com/getting-started/)
 
-### How to Display Constraints for table student?
+### How to Display Constraints for table student? 🔥 🔥
 You need to use the user dictionary 
 ```sql
 Select Constraint_name,status form user_constraints From Student;
@@ -353,9 +354,33 @@ The Result:
 
 ![](../photos/co-re.png)
 
+### How To create a view 🔥 🔥
+ To create a new view in a database, you use the following Oracle 
+ ```sql
 
+CREATE OR REPLACE VIEW name AS  
+SELECT column_1, column_2, column_3,......  
+FROM table 
+WHERE view_conditions;  CREATE VIEW view_name [(column_aliases)] AS
+    defining-query/*select statement*/
+[WITH READ ONLY]
+[WITH CHECK OPTION]
+```
+### example 
+![](../photos/desc-t.png)
 
+Let's create View for this Table : 
+![](../photos/v-example.png)
+```sql
+create view emp_v1 as (select ename, sal,hiredate from emp);
+```
+to show the view we write : 
+```sql
+select * from emp_v1;
+```
+The output:
 
+![](../photos/v-output.png)
 
 ![](https://media.giphy.com/media/Wsju5zAb5kcOfxJV9i/giphy.gif)
 
