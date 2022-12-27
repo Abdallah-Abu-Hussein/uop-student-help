@@ -46,32 +46,45 @@ The software that manages the access to the database.it enables users to *define
 
 ## Functions of a DBMS
 <mark>**Data storage, retrieval, and update**</mark>
+
 	A DBMS must provide users with the ability to store, retrieve, and update data in the database.  It should hide the internal physical implementation details from users
 
 <mark>**A user-accessible catalog**</mark>
+
 	A DBMS must provide a catalog in which descriptions of data items are stored and which is accessible to users.
 
 **Transaction Support**
-	<mark> A DBMS must furnish a mechanism that will ensure that either all updates corresponding to a given transaction are made or that none of them is made.</mark>  This is to prevent the database being in an inconsistent state.  A transaction is a series of actions, carried out by a single user, or a program that access or changes the contents of the database.
 
-**Concurrency Control Services**
-	A DBMS must furnish a mechanism to ensure that the database is updated correctly when multiple users are updating the database concurrently
+<mark> A DBMS must furnish a mechanism that will ensure that either all updates corresponding to a given transaction are made or that none of them is made.</mark>  This is to prevent the database being in an inconsistent state.  A transaction is a series of actions, carried out by a single user, or a program that access or changes the contents of the database.
+
+**Concurrency Control Services** 🔥
+
+	  A DBMS must furnish a mechanism **to ensure that the database is updated correctly when multiple users are updating the database concurrently**
 
 **Recovery services**
-A DBMS must furnish a mechanism for recovering the database in the event that the database is damaged in any way.
 
-**Security services** A DBMS must furnish a mechanism to ensure that only authorized users can access the database.
+   A DBMS must furnish a mechanism for recovering the database in the event that the database is damaged in any way.
+
+**Security services**
+
+    A DBMS must furnish a mechanism to ensure that only authorized users can access the database.
 	
-**Support for data communication** A DBMS must be capable of integrating with communication software.
+**Support for data communication** 
+
+    A DBMS must be capable of integrating with communication software.
 
 
 **Integrity services**
+
 	A DBMS must furnish a means to ensure that both the data in the database and changes to the data follow a certain rules.
 
-**Services to promote data independence**  DBMS must include facilities to support the independence of programs from the actual structure of the database.
+**Services to promote data independence**  
+   
+    DBMS must include facilities to support the independence of programs from the actual structure of the database.
 
 **Utility services**
-	A DBMS should provide a set of utility services. These are tools to help the DBA to administer the database effectively, such as import facilities, monitor facilities, statistical analysis programs, index reorganization facilities, and many others.
+	  
+    A DBMS should provide a set of utility services. These are tools to help the DBA to administer the database effectively, such as import facilities, monitor facilities, statistical analysis programs, index reorganization facilities, and many others.
 
 ## *Some Definitions*      
 
@@ -125,7 +138,7 @@ N/A
 
 - **Naïve users** : They do not need to know about the database;They access the database through simple application programs such as data entry.
 
-- **Sophisticated users**: They are familiar with the structure of the database and the functionality of the DBMS.They use high-level query language, such as SQL.
+- **Sophisticated users**: They are familiar with the **structure of the database and the functionality of the DBMS**.**They use high-level query language, such as SQL**.
 
 ### *DBA Responsibilities*:
 
@@ -150,7 +163,7 @@ The DBA also defines procedures for backup and recovery. Defining backup procedu
 The DBA has to continuously monitor the performance of the queries and take measures to optimize all the queries in the application.
 
 ## *DBA Challenges*
-- Ever Changing Technologies
+- Ever Changing TechnologiGes
 - Never ending requests
 - Urgency of a client’s demands for  data
 - Need to maintain a secure, yet available database environment
@@ -182,8 +195,7 @@ In other words, Oracle logically stores data in the tablespaces and physically s
 
 
 A datafile can span multiple disks. The size of a
-datafile is initially determined by the DBA upon creation. It can be as
-large as the largest file permitted by the operating system. The configuration of the machine on which the database is running determines
+datafile is initially determined by the DBA upon creation. It can be as large as the largest file permitted by the operating system. The configuration of the machine on which the database is running determines
 exactly how the information in the datafile is distributed across the disk.
 
 ![](../photos/T-TS.png)
@@ -202,11 +214,11 @@ exactly how the information in the datafile is distributed across the disk.
 - Default tablespaces in Oracle
 
   -  The `SYSTEM` and `SYSAUX tablespaces store system-generated objects such as data dictionary tables. And you should not store any object in these tablespaces.
-  - The `USERS` tablespace is helpful for ad-hoc users.
-  - The `RBS` holds the undo data The RBS tablespace is used for roll-
-back segments.
+  - The `USERS` amples in this book, the USERS tablespace is used as the default tablespace for all users who have been granted permission to create objects such as tables and indexes.
+  - The `RBS` holds the undo data The RBS tablespace is used for rollback segments.
   - The `TEMP` is the temporary tablespace which is used for storing intermediate results of sorting, hashing, and large object processing operations.
-The INDX tablespace is used to store index data. These naming conven-
+  - The `INDX` tablespace is used to store index data. 
+
 
 - Tablespaces status 
 
@@ -502,7 +514,6 @@ DEFAULT STORAGE
 -------------------------------
 conn ahmad/ahmad
 create table dept (a number );
-G
 conn system/p2
 select table_name , tablespace_name from dba_tables
     where owner = 'AHMAD';
