@@ -214,7 +214,7 @@ exactly how the information in the datafile is distributed across the disk.
 - Default tablespaces in Oracle
 
   -  The `SYSTEM` and `SYSAUX tablespaces store system-generated objects such as data dictionary tables. And you should not store any object in these tablespaces.
-  - The `USERS` amples in this book, the USERS tablespace is used as the default tablespace for all users who have been granted permission to create objects such as tables and indexes.
+  - The `USERS` the USERS tablespace is used as the default tablespace for all users who have been granted permission to create objects such as tables and indexes.
   - The `RBS` holds the undo data The RBS tablespace is used for rollback segments.
   - The `TEMP` is the temporary tablespace which is used for storing intermediate results of sorting, hashing, and large object processing operations.
   - The `INDX` tablespace is used to store index data. 
