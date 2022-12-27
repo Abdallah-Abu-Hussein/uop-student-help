@@ -1,4 +1,3 @@
-![](https://media.giphy.com/media/MdA16VIoXKKxNE8Stk/giphy-downsized.gif)
 # DBA Review
 Note: 🔥 == important
 
@@ -168,6 +167,10 @@ A view is a subset of the database, presented to one user or set of users.
 
 ## Table Spaces 
 - What a Tablespace Is ? 🔥
+
+A tablespace is a database construct that is realized by one or more files called “datafiles.” Data is not physically stored in a tablespace. It is stored in one or more datafiles.
+
+
 
 Oracle divides a database into one or more logical storage units called tablespaces.
 
@@ -480,6 +483,7 @@ CREATE TABLE t1(
 ) TABLESPACE tbs1;
 ```
 3. Create tablespace `new data` then create user Ahmad and make  `new  data` his tablespace.
+
 ```sql
 conn system/p2
 ----------------------------
@@ -492,21 +496,28 @@ DEFAULT STORAGE
    PCTINCREASE 0
 );
 ---------------------------------
-SQL> create user ahmad identified by ahmad default tablespace new_data;
+ create user ahmad identified by ahmad default tablespace new_data;
 ---------------------
-SQL> grant connect , resource to ahmad;
+ grant connect , resource to ahmad;
 -------------------------------
-SQL> conn ahmad/ahmad
-SQL> create table dept (a number );
+conn ahmad/ahmad
+create table dept (a number );
+G
 conn system/p2
-SQL> select table_name , tablespace_name from dba_tables
-  2     where owner = 'AHMAD';
+select table_name , tablespace_name from dba_tables
+    where owner = 'AHMAD';
+
+
+
+
 
 TABLE_NAME                     TABLESPACE_NAME
 ------------------------------ ------------------------------
 DEPT                           NEW_DATA
 --------------------------------------
 ```
+
+
 
 
 ```sql
