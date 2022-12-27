@@ -549,6 +549,8 @@ SQL> select sum(bytes)/1024/1024 as "Total(MB)" from dba_data_files where tables
          8
 -------------------------------------------
 ```
+
+
 ## What is an index 
 An index is a database structure that provides quick lookup of data in a column or columns of a table.
 
@@ -573,9 +575,40 @@ INDEX_NAME
 PK_EMP
 EMP_SAL_IX
 
+
+## How to drop tablespace,view,index 
+in general you just type `drop` and the object type `table,tablespace,index,view` then the object name such as : 
+
 ```sql
+ Drop view emp_v1;
+ Drop tablespace mydata;
  Drop index emp_sal_ix;
 ```
+🔥 Things to take into consideration when dropping those : 
+
+1. if the `tablespace` contains data it won't be dropped unless you add `including contents` option the drop command will look like this : 
+
+   ```sql
+   DROP TABLESPACE new_data INCLUDING CONTENTS;
+   ```
+   And before doing this it is good practice to make the table spaces status `offline` with : 
+   
+   ```sql
+   ALTER TABLESPACE new_data OFFLINE;
+   ```
+   However even if don't make it offline it will be dropped.
+    1. to check the status of the tablespaces you can use the catalog dba_tablespaces : 
+      
+    ```sql
+    select tablesapce_name, status from dba_tablespaces;
+    ```  
+      
+
+   
+
+
+
+
 
 ![](https://media.giphy.com/media/Wsju5zAb5kcOfxJV9i/giphy.gif)
 
